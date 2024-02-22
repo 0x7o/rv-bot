@@ -4,10 +4,8 @@ import random
 import requests
 from PIL import Image
 from gradio_client import Client
-from transformers import pipeline
 
 client = Client("0x7o/RussianVibe", hf_token=os.environ.get("HF_TOKEN"))
-prompt_pipe = pipeline("text-generation", model="openai-community/gpt2")
 
 VK_TOKEN = os.environ.get("VK_TOKEN")
 VK_GROUP_ID = os.environ.get("VK_GROUP_ID")
@@ -78,15 +76,29 @@ def generate(prompt, w=1024, h=1024) -> Image:
 
 
 def generate_city_prompt():
-    prompt = prompt_pipe("""1. The image features a beautiful pink and purple sky, with a tree and a streetlight in the foreground. The sky is filled with a pink hue, and the tree and streetlight are situated at the bottom of the image.
+    prompt = """1. The image features a beautiful pink and purple sky, with a tree and a streetlight in the foreground. The sky is filled with a pink hue, and the tree and streetlight are situated at the bottom of the image.
 
 2. The image features a tall apartment building with many windows. The building is made of brick, and it appears to be in a state of disrepair.
 
 3. The image features a large white building situated on a hill overlooking a river. A boat is visible in the water, floating near the shore. The building is surrounded by trees, creating a serene and picturesque scene. The sky is overcast, adding a sense of tranquility to the scene.
 
-4. The image features a""", do_sample=True, temperature=0.7, max_new_tokens=75)[0]["generated_text"]
-    prompt = prompt.split("4. The image features a")[0].split("\n")[0]
-    return f"The image features a{prompt}"
+4. The image features a"""
+    res = requests.post('https://api.together.xyz/v1/completions', json={
+        "model": "Qwen/Qwen1.5-0.5B",
+        "max_tokens": 1572,
+        "prompt": prompt,
+        "temperature": 0.7,
+        "top_p": 0.7,
+        "top_k": 50,
+        "repetition_penalty": 1,
+        "stop": [
+            "\n", "5."
+        ],
+        "update_at": "2024-02-22T11:05:46.153Z"
+    }, headers={
+        "Authorization": "Bearer " + os.environ.get("TOGETHER_API_KEY")
+    })
+    return "The image features a " + res.json()["choices"][0]["text"].strip()
 
 
 def main():
