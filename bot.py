@@ -84,7 +84,7 @@ def generate_city_prompt():
 
 3. The image features a large white building situated on a hill overlooking a river. A boat is visible in the water, floating near the shore. The building is surrounded by trees, creating a serene and picturesque scene. The sky is overcast, adding a sense of tranquility to the scene.
 
-4. The image features a""", do_sample=True, temperature=0.9, max_new_tokens=75)
+4. The image features a""", do_sample=True, temperature=0.7, max_new_tokens=75)[0]["generated_text"]
     prompt = prompt.split("4. The image features a")[0].split("\n")[0]
     return f"The image features a{prompt}"
 
