@@ -7,7 +7,7 @@ from gradio_client import Client
 from transformers import pipeline
 
 client = Client("0x7o/RussianVibe", hf_token=os.environ.get("HF_TOKEN"))
-prompt_pipe = pipeline("text-generation", model="openai-community/gpt2-large")
+prompt_pipe = pipeline("text-generation", model="openai-community/gpt2")
 
 VK_TOKEN = os.environ.get("VK_TOKEN")
 VK_GROUP_ID = os.environ.get("VK_GROUP_ID")
@@ -84,7 +84,7 @@ def generate_city_prompt():
 
 3. The image features a large white building situated on a hill overlooking a river. A boat is visible in the water, floating near the shore. The building is surrounded by trees, creating a serene and picturesque scene. The sky is overcast, adding a sense of tranquility to the scene.
 
-4. The image features a""", do_sample=True, temperature=0.9, max_new_tokens=75)["generated_text"]
+4. The image features a""", do_sample=True, temperature=0.9, max_new_tokens=75)
     prompt = prompt.split("4. The image features a")[0].split("\n")[0]
     return f"The image features a{prompt}"
 
