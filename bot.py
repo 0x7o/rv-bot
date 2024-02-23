@@ -76,21 +76,21 @@ def generate(prompt, w=1024, h=1024) -> Image:
 
 
 def generate_city_prompt():
-    prompt = """1. The image features a beautiful pink and purple sky, with a tree and a streetlight in the foreground. The sky is filled with a pink hue, and the tree and streetlight are situated at the bottom of the image.
+    prompt = """1. The image features a large apartment building with several windows, illuminating the scene with warm light. The building is situated in a snowy area, with snow-covered trees and a street in the foreground. The snow is falling, creating a beautiful and serene atmosphere.
 
-2. The image features a tall apartment building with many windows. The building is made of brick, and it appears to be in a state of disrepair.
+2. The image features a lush green forest with tall trees and a grassy field. The sun is shining through the trees, casting a warm glow on the scene. The trees are scattered throughout the forest, creating a sense of depth and dimension. The grass is lush and green, with some areas appearing to be taller than others. The overall atmosphere of the scene is serene and peaceful, with the sun shining through the trees and casting a beautiful glow on everything.
 
-3. The image features a large white building situated on a hill overlooking a river. A boat is visible in the water, floating near the shore. The building is surrounded by trees, creating a serene and picturesque scene. The sky is overcast, adding a sense of tranquility to the scene.
+3. The image features a beautiful sunset over a cityscape with tall buildings. The sky is filled with pink and orange hues, creating a vibrant and captivating atmosphere. The sun is setting behind the buildings, creating an impressive and dramatic scene. The cityscape is dominated by the large apartment buildings, with some of them appearing closer to the foreground and others further back. The combination of the sunset and the cityscape creates a visually appealing and captivating scene.
 
 4. The image features a"""
     res = requests.post('https://api.together.xyz/v1/completions', json={
-        "model": "Qwen/Qwen1.5-0.5B",
+        "model": "meta-llama/Llama-2-13b-hf",
         "max_tokens": 1572,
         "prompt": prompt,
         "temperature": 0.7,
         "top_p": 0.7,
         "top_k": 50,
-        "repetition_penalty": 1,
+        "repetition_penalty": 1.2,
         "stop": [
             "\n", "5."
         ],
