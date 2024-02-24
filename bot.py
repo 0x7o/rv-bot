@@ -78,7 +78,7 @@ def generate(prompt, w=1024, h=1024) -> Image:
 def generate_city_prompt():
     prompt = """1. The image features a large apartment building with several windows, illuminating the scene with warm light. The building is situated in a snowy area, with snow-covered trees and a street in the foreground. The snow is falling, creating a beautiful and serene atmosphere.
 
-2. The image features a lush green forest with tall trees and a grassy field. The sun is shining through the trees, casting a warm glow on the scene. The trees are scattered throughout the forest, creating a sense of depth and dimension. The grass is lush and green, with some areas appearing to be taller than others. The overall atmosphere of the scene is serene and peaceful, with the sun shining through the trees and casting a beautiful glow on everything.
+2. The image features a large apartment building at dusk, with many windows lit up. The building is situated on a street, and the windows are illuminated by the setting sun. The scene is quite dramatic, with the building's facade illuminated by a warm glow from the sun.
 
 3. The image features a beautiful sunset over a cityscape with tall buildings. The sky is filled with pink and orange hues, creating a vibrant and captivating atmosphere. The sun is setting behind the buildings, creating an impressive and dramatic scene. The cityscape is dominated by the large apartment buildings, with some of them appearing closer to the foreground and others further back. The combination of the sunset and the cityscape creates a visually appealing and captivating scene.
 
@@ -90,7 +90,7 @@ def generate_city_prompt():
         "temperature": 0.7,
         "top_p": 0.7,
         "top_k": 50,
-        "repetition_penalty": 1.2,
+        "repetition_penalty": 1,
         "stop": [
             "\n", "5."
         ],
